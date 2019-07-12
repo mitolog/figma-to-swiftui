@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 import axios, { AxiosRequestConfig } from 'axios';
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import { PathManager, OutputType } from './PathManager';
 import { File } from 'figma-types';
 import { Node } from 'figma-types/types/node';
 import { NodeType } from 'figma-types/types/enums';
@@ -79,7 +80,6 @@ export class Figma {
   }
 
   private async getFigmaFile(shouldWriteFile: boolean): Promise<File> {
-    const outputDir: string = path.resolve(process.cwd(), process.env.OUTPUT_PATH);
     var fileData: File;
 
     try {
@@ -94,8 +94,8 @@ export class Figma {
     }
 
     if (shouldWriteFile) {
-      await fs.ensureDir(outputDir);
-      const filePath = path.join(outputDir, 'figma.json');
+      const pm = new PathManager();
+      const filePath = await pm.outputPath(OutputType.figmaJson);
       await fs.writeFile(filePath, JSON.stringify(fileData));
     }
     return fileData;

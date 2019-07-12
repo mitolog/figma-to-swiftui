@@ -37,6 +37,7 @@ export class DataTranslator {
             switch (lastMatchedKeyword) {
                 case 'textButton':
                     dataConfig = this.translateTextButton(node);
+                    dataConfig.keyword = lastMatchedKeyword;
                 default:
                     break;
             }
@@ -92,9 +93,10 @@ export class DataTranslator {
             right: Math.abs((outerBox.x + outerBox.width) - (innerBox.x + innerBox.width)),
             bottom: Math.abs((outerBox.y + outerBox.height) - (innerBox.y + innerBox.height))
         }
-        let cornerRadius: number|null = _.get(buttonShape,'rectangleCornerRadii[0]', null);
-        if (cornerRadius && cornerRadius > 99999) {
-            cornerRadius = 0;   //  it cannot be that big, so just make it zero.
+        let cornerRadius: number|null = buttonRectangle.cornerRadius;
+        if (cornerRadius && cornerRadius >= 9999) {
+            // 9999 means make it radius as possible as we can.
+            cornerRadius = outerBox.height*0.5;
         }
 
 

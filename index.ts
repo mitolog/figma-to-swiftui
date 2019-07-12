@@ -1,8 +1,7 @@
 import { Figma } from './core/Figma';
-import { File } from 'figma-types';
-import { Node } from 'figma-types/types/node';
-import { NodeType } from 'figma-types/types/enums';
 import { DataTranslator } from './core/DataTranslator';
+import { Node } from 'figma-types/types/node';
+import { CodeGenerator } from './core/CodeGenerator';
 
 class App {
   async run() {
@@ -20,7 +19,8 @@ class App {
     //console.log(configs);
 
     // adopt template
-
+    const generator = new CodeGenerator();
+    generator.generate(configs);
   }
 }
 
@@ -28,8 +28,3 @@ const app = new App();
 app.run().then(_ => {
   console.log('extracted then generated');
 });
-
-// parse figma file
-// gather data
-// adopt data to template
-// export as a swift file
