@@ -1,0 +1,37 @@
+import SwiftUI
+
+struct TextButton : View {
+        var config: ButtonConfig = ButtonConfig(
+            title: "{{title}}",
+            font: .custom("{{font.name}}", size: {{font.size}}),
+            textColor: Color(red: {{textColor.r}}, green: {{textColor.g}}, blue: {{textColor.b}}, opacity: {{textColor.a}}),
+            bgColor: Color(red: {{bgColor.r}}, green: {{bgColor.g}}, blue: {{bgColor.b}}, opacity: {{bgColor.a}}),
+            borderColor: Color(red: {{borderColor.r}}, green: {{borderColor.g}}, blue: {{borderColor.b}}, opacity: {{borderColor.a}}),
+            borderWidth: {{borderWidth}},
+            cornerRadius: {{cornerRadius}},
+            insets: EdgeInsets.init(top: {{insets.top}}, leading: {{insets.left}}, bottom: {{insets.bottom}}, trailing: {{insets.right}}))
+
+    var body: some View {
+        Button(action: {
+
+        }) {
+            Text(config.title)
+                .font(config.font)
+                .color(config.textColor)
+                .padding(config.insets)
+        }
+        .background(config.bgColor)
+        .border(config.borderColor,
+                width: config.borderWidth,
+                cornerRadius: config.cornerRadius)
+        .cornerRadius(config.cornerRadius)
+    }
+}
+
+#if DEBUG
+struct TextButton_Previews : PreviewProvider {
+    static var previews: some View {
+        TextButton()
+    }
+}
+#endif

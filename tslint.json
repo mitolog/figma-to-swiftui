@@ -1,0 +1,19 @@
+{
+    "defaultSeverity": "error",
+    "extends": ["tslint:recommended", "tslint-config-prettier"],
+    "jsRules": {},
+    "linterOptions": {
+      "exclude": ["node_modules/**"]
+    },
+    "rules": {
+      "trailing-comma": false,
+      "typedef": [
+        true,
+        "parameter",
+        "arrow-parameter",
+        "property-declaration",
+        "member-variable-declaration"
+      ]
+    },
+    "rulesDirectory": []
+  }
