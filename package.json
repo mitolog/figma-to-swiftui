@@ -10,7 +10,7 @@
     "fs-extra": "^8.1.0",
     "handlebars": "^4.1.2",
     "handlebars-helpers": "^0.10.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "reflect-metadata": "^0.1.13",
     "tslib": "^1.10.0"
   },
